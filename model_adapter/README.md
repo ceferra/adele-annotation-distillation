@@ -1,10 +1,24 @@
 # Distilled model download
 
-The trained QLoRA adapter (~154MB packaged) is too large for a normal git
-commit (GitHub's 100MB per-file limit), so it is published as a
-**GitHub Release asset** instead of being stored in this directory.
+The trained QLoRA adapter (~154MB packaged) is not stored in this directory.
 
-Download it from the repository's Releases page:
+## Canonical location: Hugging Face Hub
+
+https://huggingface.co/ceferra/qwen2.5-7b-adele-annotator
+
+```python
+from peft import PeftModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+base = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
+model = PeftModel.from_pretrained(base, "ceferra/qwen2.5-7b-adele-annotator")
+tok = AutoTokenizer.from_pretrained("ceferra/qwen2.5-7b-adele-annotator")
+```
+
+## Mirror: GitHub Release
+
+Also available as a GitHub Release asset (useful if you don't want a
+Hugging Face dependency), on this repository's Releases page:
 https://github.com/ceferra/adele-annotation-distillation/releases
 
 Asset: `distilled-qwen2.5-7b-adele-lora.tar.gz`

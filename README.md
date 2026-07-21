@@ -126,23 +126,29 @@ above from the official ADeLe v1.0 battery, or are available on request.
 The distilled QLoRA adapter (`Qwen2.5-7B-Instruct` base, LoRA r=16, alpha=32,
 dropout=0.05, target modules `q_proj,k_proj,v_proj,o_proj,gate_proj,
 up_proj,down_proj`, trained for 1 epoch on 51 of the 63 official ADeLe v1.0
-tasks — 6 tasks held out for validation, 6 for test, seed 42) is **~161MB**
-and exceeds GitHub's 100MB per-file limit, so it is **not committed to the
-git history**. Instead it is published as a **GitHub Release asset**
-(a `.tar.gz` containing the PEFT adapter + tokenizer files) — see the
-repository's Releases page. Load it with:
+tasks — 6 tasks held out for validation, 6 for test, seed 42) is **~161MB**.
+
+**Canonical location — Hugging Face Hub:**
+https://huggingface.co/ceferra/qwen2.5-7b-adele-annotator
 
 ```python
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 base = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
-model = PeftModel.from_pretrained(base, "path/to/extracted/adapter")
-tok = AutoTokenizer.from_pretrained("path/to/extracted/adapter")
+model = PeftModel.from_pretrained(base, "ceferra/qwen2.5-7b-adele-annotator")
+tok = AutoTokenizer.from_pretrained("ceferra/qwen2.5-7b-adele-annotator")
 ```
 
-Or merge it into a standalone checkpoint with `scripts/merge_lora.py` before
-serving it with vLLM (this is how it was evaluated in this project).
+It is also mirrored as a **GitHub Release asset** on this repository (a
+`.tar.gz` containing the same PEFT adapter + tokenizer files, useful if you
+don't want a Hugging Face dependency) — see the Releases page and load it
+the same way, pointing `from_pretrained` at the extracted local folder
+instead of the HF repo id.
+
+Either way, merge the adapter into a standalone checkpoint with
+`scripts/merge_lora.py` before serving it with vLLM (this is how it was
+evaluated in this project).
 
 ## Methodology summary
 
