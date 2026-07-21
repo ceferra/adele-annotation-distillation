@@ -1,0 +1,43 @@
+task,candidate,n,mae,exact,within1,kappa_quad
+MenatQA-Scope,qwen (solo),782,0.459,65.7,91.9,0.669
+MenatQA-Scope,llama33 (solo),782,0.385,67.1,95.9,0.755
+MenatQA-Scope,mistral (solo),782,0.529,62.3,89.4,0.601
+MenatQA-Scope,"mean(Q,L,M)",782,0.376,67.9,95.5,0.757
+MenatQA-Scope,"median(Q,L,M)",782,0.349,71.5,95.1,0.763
+MenatQA-Scope,"min(Q,L,M)",782,0.386,68.4,95.0,0.693
+MenatQA-Scope,"max(Q,L,M)",782,0.638,55.2,87.1,0.589
+Physics,qwen (solo),1415,0.525,61.9,89.8,0.756
+Physics,llama33 (solo),1415,0.555,55.6,91.1,0.787
+Physics,mistral (solo),1415,0.473,62.3,92.4,0.813
+Physics,"mean(Q,L,M)",1415,0.426,63.5,94.5,0.843
+Physics,"median(Q,L,M)",1415,0.417,65.0,94.3,0.844
+Physics,"min(Q,L,M)",1415,0.53,58.4,90.7,0.78
+Physics,"max(Q,L,M)",1415,0.606,56.3,88.3,0.737
+chemistry,qwen (solo),1236,0.418,65.7,93.6,0.841
+chemistry,llama33 (solo),1236,0.512,61.7,90.0,0.778
+chemistry,mistral (solo),1236,0.672,58.0,84.5,0.628
+chemistry,"mean(Q,L,M)",1236,0.436,62.6,94.1,0.834
+chemistry,"median(Q,L,M)",1236,0.371,69.1,94.8,0.857
+chemistry,"min(Q,L,M)",1236,0.559,59.9,88.5,0.715
+chemistry,"max(Q,L,M)",1236,0.672,56.4,84.7,0.681
+cta,qwen (solo),189,0.418,64.6,95.2,0.69
+cta,llama33 (solo),189,0.365,67.2,97.4,0.713
+cta,mistral (solo),189,0.386,68.3,95.2,0.674
+cta,"mean(Q,L,M)",189,0.27,76.2,96.8,0.792
+cta,"median(Q,L,M)",189,0.28,75.1,97.4,0.787
+cta,"min(Q,L,M)",189,0.439,64.6,94.2,0.568
+cta,"max(Q,L,M)",189,0.45,60.3,96.3,0.709
+engineering,qwen (solo),1241,0.483,63.7,91.5,0.803
+engineering,llama33 (solo),1241,0.567,59.4,87.6,0.78
+engineering,mistral (solo),1241,0.671,56.3,85.0,0.67
+engineering,"mean(Q,L,M)",1241,0.488,58.0,94.0,0.832
+engineering,"median(Q,L,M)",1241,0.405,67.4,94.0,0.851
+engineering,"min(Q,L,M)",1241,0.574,60.9,87.3,0.726
+engineering,"max(Q,L,M)",1241,0.743,51.0,82.8,0.686
+zebra_puzzle,qwen (solo),121,0.488,63.6,91.7,0.787
+zebra_puzzle,llama33 (solo),121,0.636,51.2,88.4,0.812
+zebra_puzzle,mistral (solo),121,0.636,57.9,87.6,0.7
+zebra_puzzle,"mean(Q,L,M)",121,0.471,61.2,91.7,0.843
+zebra_puzzle,"median(Q,L,M)",121,0.455,67.8,90.9,0.817
+zebra_puzzle,"min(Q,L,M)",121,0.595,57.0,90.1,0.748
+zebra_puzzle,"max(Q,L,M)",121,0.711,47.9,86.8,0.745
