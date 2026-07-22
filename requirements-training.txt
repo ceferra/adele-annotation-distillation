@@ -1,0 +1,14 @@
+# Environment for: prepare_distillation_dataset.py, train_distill_lora.py,
+# merge_lora.py, eval_distilled.py (QLoRA distillation + evaluation)
+torch==2.4.0+cu118
+transformers==4.46.3
+peft==0.13.2
+trl==0.11.4
+bitsandbytes==0.44.1
+accelerate==1.0.1
+datasets==3.1.0
+numpy==2.2.6
+
+# Not on PyPI -- install from source (used by prepare_distillation_dataset.py
+# for the official ADeLe v1.0 rubric definitions / instruction templates):
+# pip install git+https://github.com/adgomant/delean-batch-manager.git

@@ -1,0 +1,18 @@
+# Environment for: run_annotation*.slurm (vLLM offline batch annotation with
+# Qwen2.5-72B-Instruct-AWQ, Llama-3.3-70B-Instruct-AWQ,
+# Mistral-Large-Instruct-2411-AWQ, Mixtral-8x22B-AWQ)
+#
+# vLLM's own dependency pins are strict; installing it first (with its CUDA
+# wheel) and letting it pull compatible torch/transformers is recommended
+# over installing everything from a flat requirements file. Reference
+# versions actually used on the SLURM/GPU cluster for this project:
+#
+# torch==2.4.0+cu118
+# transformers==4.45.2
+# outlines==0.0.46
+--find-links https://download.pytorch.org/whl/torch_stable.html
+vllm @ https://github.com/vllm-project/vllm/releases/download/v0.6.1.post2/vllm-0.6.1.post2+cu118-cp310-cp310-manylinux1_x86_64.whl
+
+# Not on PyPI -- install from source (used by setup_run.py to orchestrate
+# batch annotation jobs and rubric/prompt templates):
+# pip install git+https://github.com/adgomant/delean-batch-manager.git

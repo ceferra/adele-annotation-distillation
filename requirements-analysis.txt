@@ -1,0 +1,6 @@
+# Environment for: merge_inputs.py, compute_rwg*.py, build_report.py,
+# build_full_report.py, generate_report.py
+# (result analysis, rWG computations, and PDF report generation)
+pandas==2.3.3
+numpy==1.26.4
+reportlab==4.5.1

@@ -114,12 +114,41 @@ reports/                        Full PDF reports (see above)
 docs/                           split_manifest.json (train/val/test task
                                  split used for distillation) and other notes
 model_adapter/                  see "Distilled model" below
+
+requirements-annotation.txt      deps for the vLLM batch-annotation scripts
+requirements-training.txt        deps for the QLoRA distillation scripts
+requirements-analysis.txt        deps for comparison/rWG/report scripts
 ```
 
 Raw per-item vLLM outputs, the full 16k-item distillation training set, and
 intermediate batch-run artifacts (several GB) are **not** included here to
 keep the repository lightweight; they can be regenerated with the scripts
 above from the official ADeLe v1.0 battery, or are available on request.
+
+## Installation
+
+This project spans three genuinely different environments (large-model
+batch inference, small-model training, and lightweight result analysis),
+so dependencies are split into three requirements files instead of one:
+
+```
+pip install -r requirements-annotation.txt   # vLLM batch annotation (run_annotation*.slurm)
+pip install -r requirements-training.txt     # QLoRA distillation (train_distill_lora.py, merge_lora.py, eval_distilled.py)
+pip install -r requirements-analysis.txt     # comparisons, rWG index, PDF reports (compute_rwg*.py, build_*report*.py)
+```
+
+`requirements-annotation.txt` and `requirements-training.txt` both also need
+`delean-batch-manager`, which is not on PyPI and must be installed from
+source:
+
+```
+pip install git+https://github.com/adgomant/delean-batch-manager.git
+```
+
+All three were run as separate conda environments on the SLURM/GPU cluster
+in the original project (`rcb-vllm06` for annotation, `distill-ft` for
+training); the analysis/report scripts only need pandas/numpy/reportlab and
+can run anywhere, including a laptop.
 
 ## Distilled model
 
@@ -179,9 +208,15 @@ This work would not exist without, and explicitly builds on:
   the distilled model here.
 - **Official ADeLe GitHub repository**:
   https://github.com/Kinds-of-Intelligence-CFI/ADeLe-AIEvaluation (MIT
-  License) — we reuse its `delean_batch_manager` package for batch-cost
-  estimation/annotation orchestration, and its official rubric definitions
-  and task battery as ground truth / training data.
+  License) — the official rubric definitions and task battery used here as
+  ground truth / training data.
+- **`delean-batch-manager`**: https://github.com/adgomant/delean-batch-manager
+  (Apache-2.0 License) — the companion toolkit (by Alvaro David Gomez Anton
+  and the Kinds of Intelligence Team at CFI) for managing ADeLe demand-level
+  annotation batch jobs, which we reuse for rubric/prompt templates and
+  batch-cost estimation. This is also how we learned that GPT-4o is its
+  default annotator model, which is what let us treat the "gold" columns in
+  the benchmark data as GPT-4o's own annotations for the rWG analysis.
 - Related project page: https://github.com/Kinds-of-Intelligence-CFI/ADELE
 
 Everything in this repository beyond that (the multi-model vLLM annotation
@@ -192,5 +227,8 @@ project.
 
 ## License
 
-MIT — see `LICENSE`. Please also cite the ADeLe paper and repository above
-if you use the annotation framework or task battery.
+This repository's own code is MIT — see `LICENSE`. It depends on
+`delean-batch-manager` (Apache-2.0) and reuses rubric definitions/data from
+the official ADeLe repository (MIT); please also cite the ADeLe paper and
+both repositories above if you use the annotation framework or task
+battery.
